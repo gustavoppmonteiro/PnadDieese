@@ -18,13 +18,13 @@ importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=F) {
       # baixa
       if(lista_var==F){
 
-            dados_x <- get_pnadc(year = ano,
+            dados_x <- PNADcIBGE::get_pnadc(year = ano,
                                  quarter = trimestre,
                                  labels = F,
                                  design = F)
       }else{
 
-            dados_x <- get_pnadc(year = ano,
+            dados_x <- PNADcIBGE::get_pnadc(year = ano,
                                  quarter = trimestre,
                                  vars = lista_var,
                                  labels = F,
@@ -36,13 +36,13 @@ importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=F) {
       if(bootstrap==F){
             # tira as replicações
             dados_x <- dados_x %>%
-                  select(-c(sprintf("V1028%03d",seq(1:200))))
+                  dplyr::select(-c(sprintf("V1028%03d",seq(1:200))))
       }
 
 
       # deixa tudo com classe numeric
       dados_x <- dados_x %>%
-            mutate(across(all_of(variaveis), as.numeric))
+            dplyr::mutate(dplyr::across(all_of(variaveis), as.numeric))
 
 
       # faz desenho amostral, antigo ou nao
