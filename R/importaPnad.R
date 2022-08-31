@@ -6,6 +6,28 @@
 #' @param lista_var objeto opcional contendo lista de variaveis a serem baixadas.
 #'
 #' @export
+#' @examples
+#'
+#' # carrega pacotes
+#' library(tidyverse)
+#' library(srvyr)
+#' library(survey)
+#' library(PNADcIBGE)
+#'
+#'
+#' # seleciona variaveis
+#' variaveis <-  c("V1028", "Ano", "Trimestre", "UF", "V2007")
+#'
+#' # importa base
+#' dados_2T22 <- importaPnad(2, 2022, lista_var = variaveis)
+#'
+#'
+#' # tabela com frequencia por sexo
+#' T_1 <- dados_2T22 %>%
+#'       faz_tab_freq(., V2007)
+#'
+#' T_1
+
 
 
 importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=F) {

@@ -195,13 +195,14 @@ T_2
 ###
 
 
+devtools::install_github("gustavoppmonteiro/PnadDieese")
+library(PnadDieese)
+
+
 library(tidyverse)
 library(srvyr)
 library(survey)
 library(PNADcIBGE)
-
-devtools::install_github("gustavoppmonteiro/PnadDieese")
-library(PnadDieese)
 
 
 # seleciona variaveis
@@ -214,5 +215,8 @@ T_1 <- dados_2T22 %>%
       faz_tab_freq(., V2007)
 
 T_1
+
+
+
 
 
