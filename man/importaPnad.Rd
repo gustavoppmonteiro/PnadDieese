@@ -20,6 +20,14 @@ Funcao para importar dados de um trimestre da pnad continua
 }
 \examples{
 
+# NAO RODAR!
+
+
+# instala PnadDieese
+
+devtools::install_github("gustavoppmonteiro/PnadDieese")
+library(PnadDieese)
+
 # carrega pacotes
 library(tidyverse)
 library(srvyr)
@@ -28,15 +36,15 @@ library(PNADcIBGE)
 
 
 # seleciona variaveis
-variaveis <-  c("V1028", "Ano", "Trimestre", "UF", "V2007")
+variaveis <-  c("V1028", "Ano", "Trimestre", "UF", "V2007", "VD4002")
 
-# importa base
-dados_2T22 <- importaPnad(2, 2022, lista_var = variaveis)
+# importa dados
+dados_2T22 <- PnadDieese::importaPnad(2, 2022, lista_var = variaveis)
 
-
-# tabela com frequencia por sexo
+# tabela com frequencia de ocupados por sexo
 T_1 <- dados_2T22 \%>\%
-      faz_tab_freq(., V2007)
+      filter(VD4002==1) \%>\%
+      PnadDieese::faz_tab_freq(., V2007)
 
 T_1
 }

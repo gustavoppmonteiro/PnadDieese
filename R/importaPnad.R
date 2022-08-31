@@ -23,13 +23,13 @@
 #' library(PNADcIBGE)
 #'
 #'
-#'
 #' # seleciona variaveis
 #' variaveis <-  c("V1028", "Ano", "Trimestre", "UF", "V2007", "VD4002")
 #'
+#' # importa dados
 #' dados_2T22 <- PnadDieese::importaPnad(2, 2022, lista_var = variaveis)
 #'
-#'
+#'# tabela com frequencia de ocupados por sexo
 #' T_1 <- dados_2T22 %>%
 #'       filter(VD4002==1) %>%
 #'       PnadDieese::faz_tab_freq(., V2007)
