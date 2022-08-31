@@ -8,6 +8,14 @@
 #' @export
 #' @examples
 #'
+#' # NAO RODAR!
+#'
+#'
+#' # instala PnadDieese
+#'
+#' devtools::install_github("gustavoppmonteiro/PnadDieese")
+#' library(PnadDieese)
+#'
 #' # carrega pacotes
 #' library(tidyverse)
 #' library(srvyr)
