@@ -10,6 +10,9 @@
 
 importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=F) {
 
+      # Referência ao pipe
+      `%>%` <- magrittr::`%>%`
+
       # baixa
       if(lista_var==F){
 
