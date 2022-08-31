@@ -14,7 +14,7 @@ LazyData: true
 URL: https://github.com/gustavoppmonteiro/PnadDieese
 BugReports: https://github.com/gustavoppmonteiro/PnadDieese/issues
 Imports: 
-    dplyr,
+    tidyverse,
     PNADcIBGE,
     srvyr,
     survey

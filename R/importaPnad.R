@@ -10,6 +10,10 @@
 
 importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=F) {
 
+      usethis::use_package("dplyr")
+      usethis::use_package("magrittr")
+      usethis::use_package("PNADcIBGE")
+
       # Referência ao pipe
       `%>%` <- magrittr::`%>%`
 
