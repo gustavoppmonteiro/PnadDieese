@@ -37,7 +37,7 @@ importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=F) {
 
       # deixa tudo com classe numeric
       dados_x <- dados_x %>%
-            dplyr::mutate(dplyr::across(all_of(variaveis), as.numeric))
+            dplyr::mutate(dplyr::across(dplyr::all_of(variaveis), as.numeric))
 
 
       # faz desenho amostral, antigo ou nao
