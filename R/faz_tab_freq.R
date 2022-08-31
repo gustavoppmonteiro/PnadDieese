@@ -8,6 +8,11 @@
 
 faz_tab_freq <- function(data, ...) {
 
+      usethis::use_package("dplyr")
+      usethis::use_package("srvyr")
+      usethis::use_package("survey")
+      usethis::use_package("PNADcIBGE")
+
       dados_x <- data %>%
 
             group_by(...) %>%
