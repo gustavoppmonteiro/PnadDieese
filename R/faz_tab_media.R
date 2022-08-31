@@ -10,20 +10,15 @@
 # tabela de media
 faz_tab_media <- function(data, var_media, ...) {
 
-      usethis::use_package("dplyr")
-      usethis::use_package("srvyr")
-      usethis::use_package("survey")
-      usethis::use_package("PNADcIBGE")
-
       dados_x <- data %>%
 
-            group_by(...) %>%
-            summarise(media = survey_mean({{var_media}},
+            dplyr::group_by(...) %>%
+            summarise(media = srvyr::survey_mean({{var_media}},
                                           vartype = "cv",
                                           na.rm = T),
                       Ano = first(Ano),
                       Trimestre = first(Trimestre)) %>%
-            mutate(periodo = 10*Ano + Trimestre,
+            dplyr::mutate(periodo = 10*Ano + Trimestre,
                    .keep = "unused")
 
       return(dados_x)
