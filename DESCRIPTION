@@ -1,0 +1,13 @@
+Package: PnadDieese
+Title: Le e roda tabelas basicas da Pnad Continua
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "gustavo",
+           family = "monteiro",
+           role = c("aut", "cre"),
+           email = "gustavoppmonteiro@gmail.com")
+Maintainer: gustavo monteiro <gustavoppmonteiro@gmail.com>
+Description: Pacote para ler os microdados e rodar tabelas básicas. Dá pra escolher se calcula o CV usando o método antigo ou bootstrap. Dá pra fazer tabela de frequência ou média simples.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
