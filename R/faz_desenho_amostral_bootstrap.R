@@ -6,11 +6,6 @@
 
 faz_desenho_amostral_bootstrap <- function(data) {
 
-      usethis::use_package("dplyr")
-      usethis::use_package("srvyr")
-      usethis::use_package("survey")
-      usethis::use_package("PNADcIBGE")
-
       # https://rpubs.com/gabriel-assuncao-ibge/pnadc
       dados_x <- survey::svrepdesign(data=data,
                                      weights=~V1028,

@@ -8,18 +8,13 @@
 
 faz_tab_freq <- function(data, ...) {
 
-      usethis::use_package("dplyr")
-      usethis::use_package("srvyr")
-      usethis::use_package("survey")
-      usethis::use_package("PNADcIBGE")
-
       dados_x <- data %>%
 
-            group_by(...) %>%
-            summarise(qde = survey_total(vartype = "cv"),
+            dplyr::group_by(...) %>%
+            dplyr::summarise(qde = srvyr::survey_total(vartype = "cv"),
                       Ano = first(Ano),
                       Trimestre = first(Trimestre)) %>%
-            mutate(periodo = 10*Ano + Trimestre,
+            dplyr::mutate(periodo = 10*Ano + Trimestre,
                    .keep = "unused")
 
       return(dados_x)

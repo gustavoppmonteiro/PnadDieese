@@ -6,15 +6,10 @@
 
 faz_desenho_amostral_antigo <- function(data) {
 
-      usethis::use_package("dplyr")
-      usethis::use_package("srvyr")
-      usethis::use_package("survey")
-      usethis::use_package("PNADcIBGE")
-
       options(survey.lonely.psu="adjust")
 
       dados_x <- data %>%
-            as_survey_design(ids = UPA,
+            srvyr::as_survey_design(ids = UPA,
                              strata = Estrato,
                              weights = V1028,
                              nest = TRUE)
