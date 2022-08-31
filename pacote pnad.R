@@ -207,7 +207,8 @@ library(PNADcIBGE)
 
 
 # seleciona variaveis
-variaveis <-  c("V1028", "Ano", "Trimestre", "UF", "V2007", "VD4002")
+variaveis <-  c("V1028", "Ano", "Trimestre",
+                "V2007", "VD4002", "VD4016")
 
 dados_2T22 <- PnadDieese::importaPnad(2, 2022, lista_var = variaveis)
 
@@ -219,6 +220,13 @@ T_1 <- dados_2T22 %>%
 
 T_1
 
+
+T_2 <- dados_2T22 %>%
+      filter(VD4002==1) %>%
+      mutate(rend_h_real = Habitual*VD4016) %>%
+      PnadDieese::faz_tab_media(., rend_h_real, V2007)
+
+T_2
 
 
 
