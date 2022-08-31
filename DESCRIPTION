@@ -13,3 +13,8 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/gustavoppmonteiro/PnadDieese
 BugReports: https://github.com/gustavoppmonteiro/PnadDieese/issues
+Imports: 
+    dplyr,
+    PNADcIBGE,
+    srvyr,
+    survey
