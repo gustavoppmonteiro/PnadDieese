@@ -4,7 +4,7 @@
 \alias{importaPnad}
 \title{Funcao para importar dados de um trimestre da pnad continua}
 \usage{
-importaPnad(trimestre, ano, bootstrap = F, lista_var = F)
+importaPnad(trimestre, ano, bootstrap = F, lista_var = NULL)
 }
 \arguments{
 \item{trimestre}{trimestre da pnad a ser baixada.}
@@ -25,14 +25,14 @@ Funcao para importar dados de um trimestre da pnad continua
 
 # instala PnadDieese
 
-devtools::install_github("gustavoppmonteiro/PnadDieese")
+# devtools::install_github("gustavoppmonteiro/PnadDieese")
 library(PnadDieese)
 
-# carrega pacotes
-library(tidyverse)
-library(srvyr)
-library(survey)
-library(PNADcIBGE)
+# precisa desses pacotes:
+# library(tidyverse)
+# library(srvyr)
+# library(survey)
+# library(PNADcIBGE)
 
 
 # seleciona variaveis

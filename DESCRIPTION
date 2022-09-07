@@ -21,5 +21,6 @@ Imports:
     srvyr,
     survey,
     dplyr,
-    magrittr
-RoxygenNote: 7.1.1.9000
+    magrittr,
+    tidyr
+RoxygenNote: 7.2.1

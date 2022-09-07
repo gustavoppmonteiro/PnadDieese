@@ -6,6 +6,9 @@
 
 faz_desenho_amostral_antigo <- function(data) {
 
+      # Referência ao pipe
+      `%>%` <- magrittr::`%>%`
+
       options(survey.lonely.psu="adjust")
 
       dados_x <- data %>%

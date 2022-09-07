@@ -8,6 +8,9 @@
 
 faz_tab_freq <- function(data, ...) {
 
+      # Referência ao pipe
+      `%>%` <- magrittr::`%>%`
+
       dados_x <- data %>%
 
             dplyr::group_by(...) %>%

@@ -10,6 +10,9 @@
 # tabela de media
 faz_tab_media <- function(data, var_media, ...) {
 
+      # Referência ao pipe
+      `%>%` <- magrittr::`%>%`
+
       dados_x <- data %>%
 
             dplyr::group_by(...) %>%

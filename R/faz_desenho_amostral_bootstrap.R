@@ -23,5 +23,3 @@ faz_desenho_amostral_bootstrap <- function(data) {
 }
 
 
-# devtools::document()
-# ?faz_desenho_amostral_bootstrap

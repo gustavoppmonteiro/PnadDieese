@@ -13,14 +13,14 @@
 #'
 #' # instala PnadDieese
 #'
-#' devtools::install_github("gustavoppmonteiro/PnadDieese")
+#' # devtools::install_github("gustavoppmonteiro/PnadDieese")
 #' library(PnadDieese)
 #'
-#' # carrega pacotes
-#' library(tidyverse)
-#' library(srvyr)
-#' library(survey)
-#' library(PNADcIBGE)
+#' # precisa desses pacotes:
+#' # library(tidyverse)
+#' # library(srvyr)
+#' # library(survey)
+#' # library(PNADcIBGE)
 #'
 #'
 #' # seleciona variaveis
@@ -41,13 +41,13 @@
 
 
 
-importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=F) {
+importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=NULL) {
 
       # Referência ao pipe
       `%>%` <- magrittr::`%>%`
 
       # baixa
-      if(lista_var==F){
+      if(is.null(lista_var)){
 
             dados_x <- PNADcIBGE::get_pnadc(year = ano,
                                  quarter = trimestre,
@@ -91,6 +91,3 @@ importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=F) {
 
 }
 
-
-# devtools::document()
-# ?importaPnad
