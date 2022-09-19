@@ -8,6 +8,8 @@
 
 faz_tab_freq <- function(data, ...) {
 
+      options(survey.lonely.psu="adjust")
+
       # Referência ao pipe
       `%>%` <- magrittr::`%>%`
 

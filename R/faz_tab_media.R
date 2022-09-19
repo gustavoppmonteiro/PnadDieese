@@ -10,6 +10,8 @@
 # tabela de media
 faz_tab_media <- function(data, var_media, ...) {
 
+      options(survey.lonely.psu="adjust")
+
       # Referência ao pipe
       `%>%` <- magrittr::`%>%`
 

@@ -10,6 +10,8 @@
 
 media_1x1 <- function(data, var_media, linha, coluna, cv_max=0.3) {
 
+      options(survey.lonely.psu="adjust")
+
       # Referência ao pipe
       `%>%` <- magrittr::`%>%`
 
@@ -56,7 +58,7 @@ media_1x1 <- function(data, var_media, linha, coluna, cv_max=0.3) {
       T5 <- rbind(T1, T2, T3, T4)
 
       T6 <- T5 %>%
-            dplyr::mutate(freq_tabela = ifelse(freq_cv<=cv_max,
+            dplyr::mutate(freq_tabela = ifelse((freq_cv<=cv_max | freq_cv==0),
                                         freq,
                                         NA)) %>%
             tidyr::pivot_wider(id_cols = linha,
