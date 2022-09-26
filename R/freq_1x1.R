@@ -80,4 +80,5 @@ freq_1x1 <- function(data, linha, coluna, cv_max=0.3) {
 }
 
 #TODO: fz o readme.
+#TODO: testar relocate
 
