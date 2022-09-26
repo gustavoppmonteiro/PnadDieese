@@ -75,7 +75,7 @@ media_1x1 <- function(data, var_media, linha, coluna, cv_max=0.3) {
                                                       linha)))
 
       T7 <- T7 %>%
-            dplyr::relocate("Ano", .after = last_col())
+            dplyr::relocate("Total", .after = last_col())
 
       return(T7)
 
