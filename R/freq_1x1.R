@@ -58,7 +58,7 @@ freq_1x1 <- function(data, linha, coluna, cv_max=0.3) {
       T6 <- T5 %>%
             dplyr::mutate(freq_tabela = ifelse((freq_cv<=cv_max | freq_cv==0),
                                         freq,
-                                        NA)) %>%
+                                        999999999999)) %>%
             tidyr::pivot_wider(id_cols = linha,
                         names_from = coluna,
                         names_prefix = "col_",
@@ -80,5 +80,5 @@ freq_1x1 <- function(data, linha, coluna, cv_max=0.3) {
 }
 
 #TODO: fz o readme.
-#TODO: testar relocate
+
 

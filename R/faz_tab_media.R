@@ -30,6 +30,3 @@ faz_tab_media <- function(data, var_media, ...) {
 
 }
 
-
-# devtools::document()
-# ?faz_tab_media
