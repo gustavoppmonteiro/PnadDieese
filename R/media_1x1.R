@@ -73,9 +73,9 @@ media_1x1 <- function(data, var_media, linha, coluna, cv_max=0.3) {
             dplyr::mutate(linha = as.character(ifelse(linha==999999,
                                                       "Total",
                                                       linha)))
-
-      T7 <- T7 %>%
-            dplyr::relocate("Total", .after = last_col())
+#
+#       T7 <- T7 %>%
+#             dplyr::relocate("Total", .after = last_col())
 
       return(T7)
 
