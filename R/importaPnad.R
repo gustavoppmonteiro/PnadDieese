@@ -73,7 +73,7 @@ importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=NULL) {
 
       # deixa tudo com classe numeric
       dados_x <- dados_x %>%
-            dplyr::mutate(dplyr::across(dplyr::all_of(variaveis), as.numeric))
+            dplyr::mutate(dplyr::across(dplyr::everything(), as.numeric))
 
 
       # faz desenho amostral, antigo ou nao
@@ -91,3 +91,4 @@ importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=NULL) {
 
 }
 
+#TODO: arrumar across(dplyr::all_of(variaveis) para qdo variaveis=NULL
