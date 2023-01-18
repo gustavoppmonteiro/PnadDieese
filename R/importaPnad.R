@@ -38,9 +38,6 @@
 
 
 
-
-
-
 importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=NULL) {
 
       # Referência ao pipe
@@ -55,9 +52,13 @@ importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=NULL) {
                                  design = F)
       }else{
 
+            var_necessarias <- c("V2018", "Ano", "Trimestre")
+
+            lista_var_final <- unique(lista_var, var_necessarias)
+
             dados_x <- PNADcIBGE::get_pnadc(year = ano,
                                  quarter = trimestre,
-                                 vars = lista_var,
+                                 vars = lista_var_final,
                                  labels = F,
                                  design = F)
       }
