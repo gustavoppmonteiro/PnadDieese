@@ -91,4 +91,4 @@ importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=NULL) {
 
 }
 
-#TODO: arrumar across(dplyr::all_of(variaveis) para qdo variaveis=NULL
+
