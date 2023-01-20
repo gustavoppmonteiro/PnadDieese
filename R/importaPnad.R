@@ -17,10 +17,10 @@
 #' library(PnadDieese)
 #'
 #' # precisa desses pacotes:
-#' # library(tidyverse)
-#' # library(srvyr)
-#' # library(survey)
-#' # library(PNADcIBGE)
+#' library(tidyverse)
+#' library(srvyr)
+#' library(survey)
+#' library(PNADcIBGE)
 #'
 #'
 #' # seleciona variaveis
