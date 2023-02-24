@@ -9,7 +9,7 @@
 #' @export
 #'
 
-importaPnad_sem_desenho_amostral <- function(trimestre, ano, bootstrap=F, lista_var=NULL) {
+importaPnad_sem_desenho_amostral <- function(trimestre, ano, bootstrap=F, lista_var=NULL, sm=F) {
 
       # Referência ao pipe
       `%>%` <- magrittr::`%>%`
