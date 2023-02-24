@@ -4,6 +4,7 @@
 #' @param ano ano da pnad a ser baixada.
 #' @param bootstrap logica, opcional. Se TRUE, mantem os pesos replicados para usar no bootstrap. Se FALSE, descarta essas 200 variaveis.
 #' @param lista_var objeto opcional contendo lista de variaveis a serem baixadas.
+#' @param sm logica, opcional. Se TRUE, acrescenta duas colunas que baixa do site do DIEESE: salario_minimo e salario_minimo_necessario.
 #'
 #' @export
 #'
@@ -45,6 +46,13 @@ importaPnad_sem_desenho_amostral <- function(trimestre, ano, bootstrap=F, lista_
       # deixa tudo com classe numeric
       dados_x <- dados_x %>%
             dplyr::mutate(dplyr::across(dplyr::everything(), as.numeric))
+
+
+      # acrescenta coluans de sm
+      if(sm==T){
+            dados_x <- PnadDieese::SM_DIEESE(dados_x)
+      }
+
 
       return(dados_x)
 

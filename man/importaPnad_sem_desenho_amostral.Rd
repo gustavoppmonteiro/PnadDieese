@@ -19,6 +19,8 @@ importaPnad_sem_desenho_amostral(
 \item{bootstrap}{logica, opcional. Se TRUE, mantem os pesos replicados para usar no bootstrap. Se FALSE, descarta essas 200 variaveis.}
 
 \item{lista_var}{objeto opcional contendo lista de variaveis a serem baixadas.}
+
+\item{sm}{logica, opcional. Se TRUE, acrescenta duas colunas que baixa do site do DIEESE: salario_minimo e salario_minimo_necessario.}
 }
 \description{
 Funcao para importar dados de um trimestre da pnad continua

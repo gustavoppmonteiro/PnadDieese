@@ -4,7 +4,7 @@
 \alias{importaPnad}
 \title{Funcao para importar dados de um trimestre da pnad continua}
 \usage{
-importaPnad(trimestre, ano, bootstrap = F, lista_var = NULL)
+importaPnad(trimestre, ano, bootstrap = F, lista_var = NULL, sm = F)
 }
 \arguments{
 \item{trimestre}{trimestre da pnad a ser baixada.}
@@ -14,6 +14,8 @@ importaPnad(trimestre, ano, bootstrap = F, lista_var = NULL)
 \item{bootstrap}{logica, opcional. Se TRUE, faz o desenho amostral usando os pesos replicados (bootstrap). Se FALSE, faz o desenho amostral usando o metodo antigo (linearizacao de Taylor).}
 
 \item{lista_var}{objeto opcional contendo lista de variaveis a serem baixadas.}
+
+\item{sm}{logica, opcional. Se TRUE, acrescenta duas colunas que baixa do site do DIEESE: salario_minimo e salario_minimo_necessario.}
 }
 \description{
 Funcao para importar dados de um trimestre da pnad continua

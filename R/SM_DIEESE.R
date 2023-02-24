@@ -1,8 +1,6 @@
 #' Funcao para baixar tabela a serie historica de salarios minimos e salario minimos necessarios calculados pelo DIEESE
 #'
 #' @export
-#'
-
 
 SM_DIEESE <- function(dados) {
 

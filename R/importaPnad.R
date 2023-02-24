@@ -4,6 +4,7 @@
 #' @param ano ano da pnad a ser baixada.
 #' @param bootstrap logica, opcional. Se TRUE, faz o desenho amostral usando os pesos replicados (bootstrap). Se FALSE, faz o desenho amostral usando o metodo antigo (linearizacao de Taylor).
 #' @param lista_var objeto opcional contendo lista de variaveis a serem baixadas.
+#' @param sm logica, opcional. Se TRUE, acrescenta duas colunas que baixa do site do DIEESE: salario_minimo e salario_minimo_necessario.
 #'
 #' @export
 #' @examples
@@ -38,7 +39,7 @@
 
 
 
-importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=NULL) {
+importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=NULL, sm=F) {
 
       # Referência ao pipe
       `%>%` <- magrittr::`%>%`
@@ -85,6 +86,12 @@ importaPnad <- function(trimestre, ano, bootstrap=F, lista_var=NULL) {
 
       if(bootstrap==T){
             dados_x <- faz_desenho_amostral_bootstrap(dados_x)
+      }
+
+
+      # acrescenta coluans de sm
+      if(sm==T){
+            dados_x <- PnadDieese::SM_DIEESE(dados_x)
       }
 
 
