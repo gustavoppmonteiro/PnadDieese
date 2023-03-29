@@ -7,7 +7,7 @@
 #'
 #' @export
 
-freq_1x1_teste <- function(data, linha, coluna, cv_max=0.3) {
+freq_1x1 <- function(data, linha, coluna, cv_max=0.3) {
 
       options(survey.lonely.psu="adjust")
 

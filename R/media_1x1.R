@@ -9,7 +9,7 @@
 #'
 #' @export
 
-media_1x1_teste <- function(data, var_media, linha, coluna, cv_max=0.3) {
+media_1x1 <- function(data, var_media, linha, coluna, cv_max=0.3) {
 
       options(survey.lonely.psu="adjust")
 
