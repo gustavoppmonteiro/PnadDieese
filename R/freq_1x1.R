@@ -82,7 +82,7 @@ freq_1x1_teste <- function(data, linha, coluna, cv_max=0.3) {
 
       T7 <- T7 %>%
             dplyr::relocate("Total", .after = last_col()) %>%
-            mutate(periodo = ddd$periodo[1])
+            dplyr::mutate(periodo = ddd$periodo[1])
 
 
       return(T7)

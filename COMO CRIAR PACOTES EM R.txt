@@ -1,0 +1,38 @@
+# https://r-pkgs.org/Whole-game.html
+# https://curso-r.github.io/zen-do-r/pacotes.html#documenta%C3%A7%C3%A3o
+
+# 1) cria um pacote
+# na verdade, achei mais facil criar um pacote e fazer tudo menos usar git e github. 
+# depois de pronto, eu criei um projeto e conectei com git e github.
+# Daí, na pasta do projeto, apaguei tudo e copiei tudo o que tinha na pasta do pacote no lugar.
+usethis::create_package("D:/Dados/Bases de dados/Pacotes de leitura/CagedDIEESE")
+
+# 2) atribui licenca
+usethis::use_mit_license("gustavo monteiro")
+
+# 3) arruma DESCRIPTION
+
+# 4) usa git e github
+usethis::use_git()
+usethis::use_github()
+
+# 5) escreve as funcoes na pasta R/
+
+# 6) documenta
+devtools::document()
+
+# 7) checa erros
+devtools::check()
+
+# 8) instala
+# as vezes precisa disso pra logar no github: credentials::set_github_pat()
+devtools::install_local(force = T)
+devtools::install()
+
+# 9) cria o readme (rodar só no momento da criação; NÃO RODAR EM ATUALIZAÇÕES!!!)
+usethis::use_readme_md()
+
+# 10) commit e push
+
+
+
