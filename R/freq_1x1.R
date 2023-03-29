@@ -7,7 +7,7 @@
 #'
 #' @export
 
-freq_1x1 <- function(data, linha, coluna, cv_max=0.3) {
+freq_1x1_teste <- function(data, linha, coluna, cv_max=0.3) {
 
       options(survey.lonely.psu="adjust")
 
@@ -17,6 +17,13 @@ freq_1x1 <- function(data, linha, coluna, cv_max=0.3) {
       data <- data %>%
             dplyr::mutate(linha = {{linha}},
                           coluna = {{coluna}})
+
+      # pra fazer coluna de periodo no final
+      ddd <- data %>%
+            dplyr::summarise(Ano = first(Ano),
+                             Trimestre = first(Trimestre)) %>%
+            dplyr::mutate(periodo = 10*Ano + Trimestre,
+                          .keep = "unused")
 
       # linha x coluna
       T1 <- data %>%
@@ -57,12 +64,12 @@ freq_1x1 <- function(data, linha, coluna, cv_max=0.3) {
 
       T6 <- T5 %>%
             dplyr::mutate(freq_tabela = ifelse((freq_cv<=cv_max | freq_cv==0),
-                                        freq,
-                                        999999999999)) %>%
+                                               freq,
+                                               999999999999)) %>%
             tidyr::pivot_wider(id_cols = linha,
-                        names_from = coluna,
-                        names_prefix = "col_",
-                        values_from = freq_tabela)
+                               names_from = coluna,
+                               names_prefix = "col_",
+                               values_from = freq_tabela)
 
       T7 <- T6 %>%
             dplyr::mutate(Total = col_999999,
@@ -73,8 +80,9 @@ freq_1x1 <- function(data, linha, coluna, cv_max=0.3) {
                                                       linha)))
 
 
-            T7 <- T7 %>%
-                  dplyr::relocate("Total", .after = last_col())
+      T7 <- T7 %>%
+            dplyr::relocate("Total", .after = last_col()) %>%
+            mutate(periodo = ddd$periodo[1])
 
 
       return(T7)
