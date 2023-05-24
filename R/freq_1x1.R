@@ -15,6 +15,10 @@ freq_1x1 <- function(data, linha, coluna, cv_max=0.3) {
       # Referência ao pipe
       `%>%` <- magrittr::`%>%`
 
+      data <- data %>%
+            dplyr::mutate(linha = {{linha}},
+                          coluna = {{coluna}})
+
       # pra fazer coluna de periodo no final
       ddd <- data %>%
             dplyr::summarise(Ano = first(Ano),
