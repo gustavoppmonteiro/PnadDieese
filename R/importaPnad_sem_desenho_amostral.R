@@ -23,7 +23,7 @@ importaPnad_sem_desenho_amostral <- function(trimestre, ano, bootstrap=F, lista_
                                             design = F)
       }else{
 
-            var_necessarias <- c("V2018", "Ano", "Trimestre")
+            var_necessarias <- c("V1028", "Ano", "Trimestre")
 
             lista_var_final <- unique(lista_var, var_necessarias)
 

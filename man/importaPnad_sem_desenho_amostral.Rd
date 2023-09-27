@@ -8,7 +8,8 @@ importaPnad_sem_desenho_amostral(
   trimestre,
   ano,
   bootstrap = F,
-  lista_var = NULL
+  lista_var = NULL,
+  sm = F
 )
 }
 \arguments{
