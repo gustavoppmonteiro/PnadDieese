@@ -67,7 +67,7 @@ media_1x1 <- function(data, var_media, linha, coluna, cv_max=0.3) {
       T5 <- rbind(T1, T2, T3, T4)
 
       T6 <- T5 %>%
-            dplyr::mutate(freq_tabela = ifelse((freq_cv<=cv_max | freq_cv==0),
+            dplyr::mutate(freq_tabela = ifelse((freq_cv<=cv_max & freq_cv>0),
                                                freq,
                                                999999999999)) %>%
             tidyr::pivot_wider(id_cols = linha,
