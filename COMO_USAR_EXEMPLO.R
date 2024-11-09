@@ -1,4 +1,4 @@
-# PNAD - Everson - PA: faixa etária
+# PNAD - PA: faixa etária
 # 10/03/23
 
 
@@ -23,7 +23,7 @@ library(purrr)
 library(tidyverse) # um pacote de pacotes. so dplyr ja bastaria
 library(writexl)  # serve pra baixar as tabelas no excel
 library(srvyr)  # para rodar survey usando dplyr
-library(PNADcIBGE) 
+library(PNADcIBGE)
 
 # as vezes tem que usar esses tb
 # library(survey)
@@ -42,21 +42,21 @@ variaveis <-  c("UF", "V2009", "V4019", "VD4002", "VD4009")
 # crio uma funcao para baixar, selecionar variavies e salvar os dados em uma nova pasta
 # bootstrap_baixar=F -> pq nao vou baixar os pesos para replicacao (mas deixei a opcao de usar)
 baixa_pnad <- function(trimestre_baixar, ano_baixar, bootstrap_baixar=F){
-  
+
   # importaPnad_sem_desenho_amostral
-  dados <- PnadDieese::importaPnad_sem_desenho_amostral(trimestre_baixar, 
-                                                        ano_baixar, 
+  dados <- PnadDieese::importaPnad_sem_desenho_amostral(trimestre_baixar,
+                                                        ano_baixar,
                                                         lista_var = variaveis,
                                                         bootstrap = bootstrap_baixar,
-                                                        sm = T) %>% 
-    select(-"Efetivo") %>% 
-    select(-"Habitual") %>% 
+                                                        sm = T) %>%
+    select(-"Efetivo") %>%
+    select(-"Habitual") %>%
     filter(UF==15)
-  
+
   # salva
   dir.create("dados", showWarnings = F)
   save("dados", file = paste0("dados/", trimestre_baixar, "T", ano_baixar, ".RData"))
-  
+
 }
 
 
@@ -70,53 +70,53 @@ baixa_pnad(4, 2022)
 # 2) FUNCAO PARA ARRUMAR AS BASES -----------------------------------------
 
 arruma_pnad <- function(data, bootstrap_baixar=F){
-  
+
   # cria variaveis
-  dados <- data %>% 
-    # arrange(UPA, V1008, V1014, V2005) %>% 
-    
+  dados <- data %>%
+    # arrange(UPA, V1008, V1014, V2005) %>%
+
     mutate(fx_etaria = case_when(V2009<14~0,
                                  (V2009>=14 & V2009<18)~14,
                                  (V2009>=18 & V2009<25)~18,
                                  (V2009>=25 & V2009<40)~25,
                                  (V2009>=40 & V2009<60)~40,
                                  (V2009>=60)~60),
-           
-           tx_informal = case_when(VD4009==1~0, 
-                                   VD4009==2~100, 
-                                   
-                                   VD4009==3~0, 
+
+           tx_informal = case_when(VD4009==1~0,
+                                   VD4009==2~100,
+
+                                   VD4009==3~0,
                                    VD4009==4~100,
-                                   
-                                   VD4009==5~0, 
+
+                                   VD4009==5~0,
                                    VD4009==6~100,
-                                   VD4009==7~0, 
-                                   
+                                   VD4009==7~0,
+
                                    (VD4009==8 & V4019==1)~0, #   Empregador COM cnpj",
                                    (VD4009==8 & V4019==2)~100, # Empregador SEM cnpj",
-                                   
+
                                    (VD4009==9 & V4019==1)~0, # "Conta propria COM cnpj",
                                    (VD4009==9 & V4019==2)~100, # "Conta propria SEM cnpj",
-                                   
+
                                    VD4009==10~100),
-           
+
            conta_pp = ifelse(VD4009==9, 1, 0))
-  
-  
+
+
   # desenho amostral
   if(bootstrap_baixar==F){
     dados <- dados %>%
       PnadDieese::faz_desenho_amostral_antigo()
-    
+
   }else{
-    
-    dados <- dados %>% 
+
+    dados <- dados %>%
       PnadDieese::faz_desenho_amostral_bootstrap()
   }
-  
-  
+
+
   return(dados)
-  
+
 }
 
 
@@ -126,17 +126,17 @@ arruma_pnad <- function(data, bootstrap_baixar=F){
 file_list <- list.files("dados/", pattern = "\\.RData$", full.names = TRUE)
 
 for(i in seq_along(file_list)){
-        
+
       load(file_list[i])
-      
-      dados <- dados %>% 
+
+      dados <- dados %>%
             arruma_pnad()
-      
+
       obj_name <- paste0("pnad_", i)
       assign(obj_name, get(ls(pattern = "dados")))
-      
+
       rm(dados)
-        
+
 }
 
 
@@ -148,26 +148,26 @@ for(i in seq_along(file_list)){
 
 # funcao pra fz frequencia. vai ter fx_etaria nas linhas mas nas colunas posso escolher a variavel (var_cross)
 faz_t_qde <- function(data, var_cross){
-  
+
   tabela <- data %>%
     filter(VD4002==1) %>%
     PnadDieese::freq_1x1(., fx_etaria, {{var_cross}}, cv_max = 0.15)
-    
+
   return(tabela)
-  
+
 }
 
 
 # funcao pra fz media
 # vai ter fx_etaria nas linhas mas mas posso escolher a coluna (var_cross) e qual vairavel vai fz a media (var_media)
 faz_t_media <- function(data, var_cross, var_media){
-  
+
   tabela <- data %>%
     filter(VD4002==1) %>%
     PnadDieese::media_1x1(., {{var_media}}, fx_etaria, {{var_cross}}, cv_max = 0.15)
-    
+
     return(tabela)
-  
+
 }
 
 
@@ -210,10 +210,10 @@ abas <- mget(ls(pattern = "T_"))
 
 
 # grava as tabeas das abas (uma em cada aba do excel)
-write_xlsx(abas, "op_pnad_pa_fx_etaria_teste.xlsx")
+write_xlsx(abas, "op_pnad_pa_fx_etaria.xlsx")
 
 # abre o excel
-utils::browseURL("op_pnad_pa_fx_etaria_teste.xlsx")
+utils::browseURL("op_pnad_pa_fx_etaria.xlsx")
 
 
 
